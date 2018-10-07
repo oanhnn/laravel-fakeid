@@ -19,16 +19,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Nothing
 
 ### Fixed
-- Fix link in CHANGELOG
+- Nothing
 
 ### Security
 - Nothing
 
 
 
-## 0.1.0 - 2018-10-06
+## 0.1.0 - 2018-10-08
 
 First release
 
 
-[Unreleased]: https://github.com/oanhnn/laravel-webhook-notification/compare/v0.1.0...develop
+[Unreleased]: https://github.com/oanhnn/laravel-fakeid/compare/v0.1.0...develop

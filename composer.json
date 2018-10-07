@@ -8,23 +8,14 @@
     "fakeid",
     "hashids"
   ],
-  "license": "MIT",
   "homepage": "https://github.com/oanhnn/laravel-fakeid",
-  "support": {
-    "issues": "https://github.com/oanhnn/laravel-fakeid/issues",
-    "source": "https://github.com/oanhnn/laravel-fakeid"
-  },
+  "license": "MIT",
   "authors": [
     {
       "name": "Oanh Nguyen",
       "email": "oanhnn.bk@gmail.com"
     }
   ],
-  "autoload": {
-    "psr-4": {
-      "Laravel\\FakeId\\": "src/"
-    }
-  },
   "require": {
     "php": "^7.1.3",
     "illuminate/support": "^5.5"
@@ -32,21 +23,17 @@
   "require-dev": {
     "mockery/mockery": "^0.9",
     "orchestra/testbench": "^3.5",
-    "phpunit/phpunit": "~6.1|~7.0",
+    "phpunit/phpunit": "~6.1 || ~7.0",
     "squizlabs/php_codesniffer": "^3.0"
   },
-  "scripts": {
-    "phpunit": "php vendor/phpunit/phpunit/phpunit --coverage-html storage/coverage",
-    "phpcs": "php vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "phpcbf": "php vendor/squizlabs/php_codesniffer/bin/phpcbf"
+  "suggest": {
+    "hashids/hashids": "For using hashids driver (version >= 3.0.0)",
+    "jenssegers/optimus": "For using optimus driver (version >= 0.2.3)"
   },
   "config": {
+    "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true,
-    "optimize-autoloader": true
-  },
-  "suggest": {
-    "elfsundae/laravel-hashid-uuid": "Shorten UUID encoding"
+    "sort-packages": true
   },
   "extra": {
     "laravel": {
@@ -57,5 +44,19 @@
         "FakeId": "Laravel\\FakeId\\Facades\\FakeId"
       }
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "Laravel\\FakeId\\": "src/"
+    }
+  },
+  "scripts": {
+    "phpcbf": "php vendor/squizlabs/php_codesniffer/bin/phpcbf",
+    "phpcs": "php vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "phpunit": "php vendor/phpunit/phpunit/phpunit --coverage-html storage/coverage"
+  },
+  "support": {
+    "issues": "https://github.com/oanhnn/laravel-fakeid/issues",
+    "source": "https://github.com/oanhnn/laravel-fakeid"
   }
 }

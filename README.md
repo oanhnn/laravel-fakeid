@@ -10,6 +10,11 @@ Easy fake model ID on URL Laravel 5.5+ Application
 * php >=7.1.3
 * Laravel 5.5+
 
+## TODO
+
+- [ ] Write test classes
+- [ ] Write documents
+
 ## Installation
 
 Begin by pulling in the package through Composer.
@@ -20,6 +25,34 @@ $ composer require oanhnn/laravel-fakeid
 
 ## Usage
 
+In your model class, add a trait and make `getFakeIdDriver()` method
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\FakeId\Contracts\FakeDriver;
+use Laravel\FakeId\Contracts\ShouldFakeId;
+use Laravel\FakeId\Facades\FakeId;
+use Laravel\FakeId\RoutesWithFakeId;
+
+class User extends Authenticatable implements ShouldFakeId
+{
+    use RoutesWithFakeId;
+    use Notifiable;
+    
+    /**
+     * @return FakeDriver
+     */
+    public function getFakeIdDriver() : FakeDriver
+    {
+         return FakeId::connection('users');
+    }
+}
+```
 
 ## Changelog
 
