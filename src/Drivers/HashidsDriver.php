@@ -3,9 +3,15 @@
 namespace Laravel\FakeId\Drivers;
 
 use Hashids\Hashids;
-use Laravel\FakeId\Contracts\FakeDriver;
 
-class HashidsDriver implements FakeDriver
+/**
+ * Class HashidsDriver
+ *
+ * @package     Laravel\FakeId\Drivers
+ * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
+ * @license     The MIT license
+ */
+class HashidsDriver implements DriverInterface
 {
     /**
      * The Hashids instance.

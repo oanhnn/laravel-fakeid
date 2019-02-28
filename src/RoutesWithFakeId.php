@@ -4,9 +4,41 @@ namespace Laravel\FakeId;
 
 use Exception;
 use Laravel\FakeId\Contracts\ShouldFakeId;
+use Laravel\FakeId\Drivers\DriverInterface;
+use Laravel\FakeId\Facades\FakeId;
 
+/**
+ * Trait RoutesWithFakeId
+ *
+ * @package     Laravel\FakeId
+ * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
+ * @license     The MIT license
+ */
 trait RoutesWithFakeId
 {
+    /**
+     * Get an attribute from the model.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    abstract public function getAttribute($key);
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    abstract public function getRouteKeyName();
+
+    /**
+     * @return \Laravel\FakeId\Drivers\DriverInterface
+     */
+    public function getFakeIdDriver(): DriverInterface
+    {
+        return FakeId::driver();
+    }
+
     /**
      * Get the value of the model's route key.
      *

@@ -3,16 +3,19 @@
 namespace Laravel\FakeId\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use phpDocumentor\Reflection\Types\Static_;
+use Laravel\FakeId\Manager;
 
 /**
  * Class FakeId
  *
- * @method static \Laravel\FakeId\Contracts\FakeDriver connection(string $name = null)
- * @method static \Laravel\FakeId\FakeIdManager setDefaultConnection(string $name)
- * @method static string getDefaultConnection()
- * @method static array|string[] getConnections()
- * @method static \Laravel\FakeId\FakeIdManager extend(string $driver, \Closure $callback)
+ * @package     Laravel\FakeId\Drivers
+ * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
+ * @license     The MIT license
+ *
+ * @method static \Laravel\FakeId\Drivers\DriverInterface driver(string $name = null)
+ * @method static \Laravel\FakeId\Manager extend(string $driver, \Closure $callback)
+ * @method static string getDefaultDriver()
+ * @method static array getDrivers()
  * @method static mixed encode(mixed $data)
  * @method static mixed decode(mixed $data)
  */
@@ -25,6 +28,6 @@ class FakeId extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'fakeid';
+        return Manager::class;
     }
 }

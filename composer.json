@@ -8,8 +8,8 @@
     "fakeid",
     "hashids"
   ],
-  "homepage": "https://github.com/oanhnn/laravel-fakeid",
   "license": "MIT",
+  "homepage": "https://github.com/oanhnn/laravel-fakeid",
   "authors": [
     {
       "name": "Oanh Nguyen",
@@ -21,24 +21,26 @@
     "illuminate/support": "^5.5"
   },
   "require-dev": {
-    "mockery/mockery": "^0.9",
+    "hashids/hashids": "^3.0",
+    "jenssegers/optimus": "^1.0",
+    "mockery/mockery": "^1.0",
     "orchestra/testbench": "^3.5",
-    "phpunit/phpunit": "~6.1 || ~7.0",
-    "squizlabs/php_codesniffer": "^3.0"
+    "phpunit/phpunit": "^6.3|^7.0",
+    "squizlabs/php_codesniffer": "^3.2"
   },
   "suggest": {
-    "hashids/hashids": "For using hashids driver (version >= 3.0.0)",
-    "jenssegers/optimus": "For using optimus driver (version >= 0.2.3)"
+    "hashids/hashids": "For using hashids driver (version >= 3.0)",
+    "jenssegers/optimus": "For using optimus driver (version >= 1.0)"
   },
   "config": {
-    "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "optimize-autoloader": true
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Laravel\\FakeId\\FakeIdServiceProvider"
+        "Laravel\\FakeId\\ServiceProvider"
       ],
       "aliases": {
         "FakeId": "Laravel\\FakeId\\Facades\\FakeId"
@@ -51,9 +53,18 @@
     }
   },
   "scripts": {
-    "phpcbf": "php vendor/squizlabs/php_codesniffer/bin/phpcbf",
-    "phpcs": "php vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "phpunit": "php vendor/phpunit/phpunit/phpunit --coverage-html storage/coverage"
+    "test": [
+      "@php vendor/phpunit/phpunit/phpunit --testdox --testsuite=tests"
+    ],
+    "coverage": [
+      "@php vendor/phpunit/phpunit/phpunit --coverage-html storage/coverage --testsuite=tests"
+    ],
+    "cs-check": [
+      "@php vendor/squizlabs/php_codesniffer/bin/phpcs"
+    ],
+    "cs-fix": [
+      "@php vendor/squizlabs/php_codesniffer/bin/phpcbf"
+    ]
   },
   "support": {
     "issues": "https://github.com/oanhnn/laravel-fakeid/issues",

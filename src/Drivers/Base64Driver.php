@@ -2,9 +2,14 @@
 
 namespace Laravel\FakeId\Drivers;
 
-use Laravel\FakeId\Contracts\FakeDriver;
-
-class Base64Driver implements FakeDriver
+/**
+ * Class Base64Driver
+ *
+ * @package     Laravel\FakeId\Drivers
+ * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
+ * @license     The MIT license
+ */
+class Base64Driver implements DriverInterface
 {
     /**
      * Encode the data.

@@ -1,9 +1,15 @@
 <?php
 
 return [
+    /**
+     * Default driver name
+     */
+    'default' => 'main',
 
-    'default' => '',
-    'connections' => [
+    /**
+     * Driver's config
+     */
+    'drivers' => [
         'main' => [
             'driver' => 'base64',
             'options' => [],

@@ -2,9 +2,16 @@
 
 namespace Laravel\FakeId;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
-class FakeIdServiceProvider extends ServiceProvider
+/**
+ * Class ServiceProvider
+ *
+ * @package     Laravel\FakeId
+ * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
+ * @license     The MIT license
+ */
+class ServiceProvider extends IlluminateServiceProvider
 {
     /**
      * Register the service provider.
@@ -17,10 +24,9 @@ class FakeIdServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(dirname(__DIR__) . '/config/fakeid.php', 'fakeid');
 
         // register service
-        $this->app->singleton('fakeid', function ($app) {
-            return new FakeIdManager($app);
+        $this->app->singleton(Manager::class, function ($app) {
+            return new Manager($app);
         });
-        $this->app->alias('fakeid', FakeIdManager::class);
     }
 
     /**
@@ -34,7 +40,19 @@ class FakeIdServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 dirname(__DIR__) . '/config/fakeid.php' => config_path('fakeid.php')
-            ], 'config');
+            ], 'laravel-fakeid-config');
         }
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            Manager::class,
+        ];
     }
 }
