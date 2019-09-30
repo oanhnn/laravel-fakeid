@@ -9,20 +9,12 @@
 
 Easy fake model ID on URL Laravel 5.5+ Application.
 
-## TODO
-
-- [x] Make repository on [Github](https://github.com)
-- [x] Make repository on [Travis](https://travis.org)
-- [x] Make repository on [Coveralls](https://coveralls.io)
-- [x] Make repository on [Packagist](https://packagist.org)
-- [x] Write logic classes
-- [ ] Write test scripts
-- [x] Write README & documents
-
 ## Requirements
 
 * php >=7.1.3
 * Laravel 5.5+
+
+> Laravel 6.0+ requires php 7.2+
 
 ## Installation
 
@@ -50,7 +42,7 @@ use Laravel\FakeId\RoutesWithFakeId;
 class MyModel extends Model implements ShouldFakeId
 {
     use RoutesWithFakeId;
-    
+ 
     // other logic
 }
 ```
@@ -74,13 +66,13 @@ use Laravel\FakeId\RoutesWithFakeId;
 class MyModel extends Model implements ShouldFakeId
 {
     use RoutesWithFakeId;
-    
+
     /**
      * @return DriverInterface
      */
     public function getFakeIdDriver() : DriverInterface
     {
-         return FakeId::driver('other');
+        return FakeId::driver('other');
     }
 }
 ```
@@ -146,4 +138,4 @@ using the issue tracker.
 ## License
 
 This project is released under the MIT License.   
-Copyright © 2018 [Oanh Nguyen](https://oanhnn.github.io).
+Copyright © 2018-2019 [Oanh Nguyen](https://oanhnn.github.io).
