@@ -20,7 +20,7 @@ interface Manager
      * @return \Laravel\FakeId\Contracts\Driver
      * @throws \InvalidArgumentException
      */
-    public function driver(string $driver = null);
+    public function driver($driver = null);
 
     /**
      * Register a custom driver creator Closure.
@@ -29,7 +29,7 @@ interface Manager
      * @param  \Closure  $callback
      * @return self
      */
-    public function extend(string $driver, Closure $callback);
+    public function extend($driver, Closure $callback);
 
     /**
      * Get the default driver name.

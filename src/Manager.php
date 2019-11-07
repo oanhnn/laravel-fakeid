@@ -25,7 +25,7 @@ class Manager extends IlluminateManager implements ManagerContract
      *
      * @return string
      */
-    public function getDefaultDriver(): string
+    public function getDefaultDriver()
     {
         return $this->app->get('config')->get('fakeid.default', 'base64');
     }
