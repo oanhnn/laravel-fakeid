@@ -2,6 +2,8 @@
 
 namespace Laravel\FakeId\Drivers;
 
+use Laravel\FakeId\Contracts\Driver;
+
 /**
  * Class HexDriver
  *
@@ -9,7 +11,7 @@ namespace Laravel\FakeId\Drivers;
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
  */
-class HexDriver implements DriverInterface
+class HexDriver implements Driver
 {
     /**
      * Encode the data.

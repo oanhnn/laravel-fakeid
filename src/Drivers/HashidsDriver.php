@@ -3,6 +3,7 @@
 namespace Laravel\FakeId\Drivers;
 
 use Hashids\Hashids;
+use Laravel\FakeId\Contracts\Driver;
 
 /**
  * Class HashidsDriver
@@ -10,8 +11,10 @@ use Hashids\Hashids;
  * @package     Laravel\FakeId\Drivers
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
+ *
+ * @see https://github.com/vinkla/hashids
  */
-class HashidsDriver implements DriverInterface
+class HashidsDriver implements Driver
 {
     /**
      * The Hashids instance.
@@ -37,8 +40,8 @@ class HashidsDriver implements DriverInterface
     /**
      * Encode the data.
      *
-     * @param  mixed $data
-     * @return mixed
+     * @param  array $data
+     * @return string
      */
     public function encode($data)
     {
@@ -48,8 +51,8 @@ class HashidsDriver implements DriverInterface
     /**
      * Decode the data.
      *
-     * @param  mixed $data
-     * @return mixed
+     * @param  string $data
+     * @return array
      */
     public function decode($data)
     {

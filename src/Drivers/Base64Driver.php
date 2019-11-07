@@ -2,6 +2,8 @@
 
 namespace Laravel\FakeId\Drivers;
 
+use Laravel\FakeId\Contracts\Driver;
+
 /**
  * Class Base64Driver
  *
@@ -9,7 +11,7 @@ namespace Laravel\FakeId\Drivers;
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
  */
-class Base64Driver implements DriverInterface
+class Base64Driver implements Driver
 {
     /**
      * Encode the data.
@@ -30,6 +32,6 @@ class Base64Driver implements DriverInterface
      */
     public function decode($data)
     {
-        return base64_decode(strtr($data, '-_', '+/'), false);
+        return base64_decode(strtr($data, ['-' => '+', '_' => '/']), false);
     }
 }

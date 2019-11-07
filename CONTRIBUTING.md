@@ -31,7 +31,7 @@ Pull requests for bugs may be sent without creating any proposal issue. If you b
 
 ## Coding Standards
 
-This project follows the FIG PHP Standards Recommendations compliant with the [PSR-1: Basic Coding Standard](http://www.php-fig.org/psr/psr-1/), [PSR-2: Coding Style Guide](http://www.php-fig.org/psr/psr-2/) and [PSR-4: Autoloader](http://www.php-fig.org/psr/psr-4/) to ensure a high level of interoperability between shared PHP code. If you notice any compliance oversights, please send a patch via pull request.
+This project follows the FIG PHP Standards Recommendations compliant with the [PSR-1: Basic Coding Standard](http://www.php-fig.org/psr/psr-1/), [PSR-12 Extended Coding Style](https://www.php-fig.org/psr/psr-12) and [PSR-4: Autoloader](http://www.php-fig.org/psr/psr-4/) to ensure a high level of interoperability between shared PHP code. If you notice any compliance oversights, please send a patch via pull request.
 
 
 ## Feature Requests

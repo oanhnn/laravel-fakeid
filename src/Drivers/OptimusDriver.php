@@ -4,6 +4,7 @@ namespace Laravel\FakeId\Drivers;
 
 use InvalidArgumentException;
 use Jenssegers\Optimus\Optimus;
+use Laravel\FakeId\Contracts\Driver;
 
 /**
  * Class OptimusDriver
@@ -11,8 +12,10 @@ use Jenssegers\Optimus\Optimus;
  * @package     Laravel\FakeId\Drivers
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
+ *
+ * @see https://github.com/jenssegers/optimus#usage
  */
-class OptimusDriver implements DriverInterface
+class OptimusDriver implements Driver
 {
     /**
      * The Optimus instance.

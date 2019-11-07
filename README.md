@@ -77,6 +77,14 @@ class MyModel extends Model implements ShouldFakeId
 }
 ```
 
+> **Note** With each drivers, the input data format may be different, but the output data after decode is same with input
+>
+> | Driver    | Input type | Encoded type | Decoded type |
+> |-----------|------------|--------------|--------------|
+> | base64    | string     | string       | string       |
+> | hashids   | int[]      | string       | int[]        |
+> | hex       | string     | string       | string       |
+> | optimus   | int        | int          | int          |
 
 ### Custom driver
 
@@ -138,4 +146,4 @@ using the issue tracker.
 ## License
 
 This project is released under the MIT License.   
-Copyright © 2018-2019 [Oanh Nguyen](https://oanhnn.github.io).
+Copyright © [Oanh Nguyen](https://oanhnn.github.io).

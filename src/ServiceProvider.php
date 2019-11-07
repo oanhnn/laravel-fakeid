@@ -3,6 +3,7 @@
 namespace Laravel\FakeId;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use Laravel\FakeId\Contracts\Manager as ManagerContract;
 
 /**
  * Class ServiceProvider
@@ -14,6 +15,13 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 class ServiceProvider extends IlluminateServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Register the service provider.
      *
      * @return void
@@ -24,7 +32,7 @@ class ServiceProvider extends IlluminateServiceProvider
         $this->mergeConfigFrom(dirname(__DIR__) . '/config/fakeid.php', 'fakeid');
 
         // register service
-        $this->app->singleton(Manager::class, function ($app) {
+        $this->app->singleton(ManagerContract::class, function ($app) {
             return new Manager($app);
         });
     }
@@ -52,7 +60,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function provides()
     {
         return [
-            Manager::class,
+            ManagerContract::class,
         ];
     }
 }

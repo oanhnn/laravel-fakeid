@@ -3,8 +3,8 @@
 namespace Laravel\FakeId;
 
 use Exception;
+use Laravel\FakeId\Contracts\Driver;
 use Laravel\FakeId\Contracts\ShouldFakeId;
-use Laravel\FakeId\Drivers\DriverInterface;
 use Laravel\FakeId\Facades\FakeId;
 
 /**
@@ -32,9 +32,9 @@ trait RoutesWithFakeId
     abstract public function getRouteKeyName();
 
     /**
-     * @return \Laravel\FakeId\Drivers\DriverInterface
+     * @return \Laravel\FakeId\Contracts\Driver
      */
-    public function getFakeIdDriver(): DriverInterface
+    public function getFakeIdDriver(): Driver
     {
         return FakeId::driver();
     }

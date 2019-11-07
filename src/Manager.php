@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Manager as IlluminateManager;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Laravel\FakeId\Contracts\Manager as ManagerContract;
 use Laravel\FakeId\Drivers\Base64Driver;
 use Laravel\FakeId\Drivers\HashidsDriver;
 use Laravel\FakeId\Drivers\OptimusDriver;
@@ -17,7 +18,7 @@ use Laravel\FakeId\Drivers\OptimusDriver;
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
  */
-class Manager extends IlluminateManager
+class Manager extends IlluminateManager implements ManagerContract
 {
     /**
      * Get the default connection name.

@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\FakeId\Drivers;
+namespace Laravel\FakeId\Contracts;
 
 /**
- * Interface DriverInterface
+ * Interface Driver
  *
- * @package     Laravel\FakeId\Drivers
+ * @package     Laravel\FakeId\Contracts
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
  */
-interface DriverInterface
+interface Driver
 {
     /**
      * Encode the data.

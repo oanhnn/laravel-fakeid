@@ -2,8 +2,6 @@
 
 namespace Laravel\FakeId\Contracts;
 
-use Laravel\FakeId\Drivers\DriverInterface;
-
 /**
  * Interface ShouldFakeId
  *
@@ -14,7 +12,7 @@ use Laravel\FakeId\Drivers\DriverInterface;
 interface ShouldFakeId
 {
     /**
-     * @return \Laravel\FakeId\Drivers\DriverInterface
+     * @return \Laravel\FakeId\Contracts\Driver
      */
-    public function getFakeIdDriver(): DriverInterface;
+    public function getFakeIdDriver(): Driver;
 }
