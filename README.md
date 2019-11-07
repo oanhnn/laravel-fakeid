@@ -59,7 +59,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\FakeId\Contracts\ShouldFakeId;
-use Laravel\FakeId\Drivers\DriverInterface;
+use Laravel\FakeId\Contracts\Driver;
 use Laravel\FakeId\Facades\FakeId;
 use Laravel\FakeId\RoutesWithFakeId;
 
@@ -68,9 +68,9 @@ class MyModel extends Model implements ShouldFakeId
     use RoutesWithFakeId;
 
     /**
-     * @return DriverInterface
+     * @return \Laravel\FakeId\Contracts\Driver
      */
-    public function getFakeIdDriver() : DriverInterface
+    public function getFakeIdDriver() : Driver
     {
         return FakeId::driver('other');
     }
@@ -109,6 +109,7 @@ class AppServiceProvider extends ServiceProvider
     {
         FakeId::extend('other', function($app) {
             // create custom driver
+            // return instance implement \Laravel\FakeId\Contracts\Driver
         });
 
         // other logic
