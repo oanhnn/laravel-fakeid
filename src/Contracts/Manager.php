@@ -17,18 +17,17 @@ interface Manager
      * Get a driver instance.
      *
      * @param  string  $driver
-     * @return mixed
-     *
+     * @return \Laravel\FakeId\Contracts\Driver
      * @throws \InvalidArgumentException
      */
-    public function driver(string $name);
+    public function driver(string $driver = null);
 
     /**
      * Register a custom driver creator Closure.
      *
      * @param  string    $driver
      * @param  \Closure  $callback
-     * @return $this
+     * @return self
      */
     public function extend(string $driver, Closure $callback);
 
