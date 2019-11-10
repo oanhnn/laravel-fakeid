@@ -72,7 +72,9 @@ class MyModel extends Model implements ShouldFakeId
      */
     public function getFakeIdDriver() : Driver
     {
-        return FakeId::driver('other');
+        return FakeId::driver('hex');
+        // or create driver instance
+        // return new HexDriver();
     }
 }
 ```
@@ -88,13 +90,28 @@ class MyModel extends Model implements ShouldFakeId
 
 ### Custom driver
 
-You can also create custom driver by add below code to `AppServiceProvider::boot()` method
+You can also create custom driver by implements `Laravel\FakeId\Contracts\Driver` interface
+
+```php
+
+namespace App;
+
+use Laravel\FakeId\Contracts\Driver;
+
+class CustomDriver implements Driver
+{
+    // your driver logic
+}    
+```
+
+And register with FakeId Manager by add below code to `AppServiceProvider::boot()` method
 
 ```php
 <?php
 
 namespace App\Providers;
 
+use App\CustomDriver;
 use Illuminate\Support\ServiceProvider;
 use Laravel\FakeId\Facades\FakeId;
 
@@ -107,15 +124,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        FakeId::extend('other', function($app) {
-            // create custom driver
-            // return instance implement \Laravel\FakeId\Contracts\Driver
+        FakeId::extend('custom', function($app) {
+            return new CustomDriver();
         });
 
         // other logic
     }
 }
-``` 
+```
+
+Now, you can use it
+
+```php
+<?php
+
+use Laravel\FakeId\Facades\FakeId;
+
+FakeId::driver('custom')->encode('123');
+
+```
 
 ## Changelog
 

@@ -1,5 +1,7 @@
 <?php
 
+use Laravel\FakeId\Drivers\PrefixDriver;
+
 return [
     /**
      * Default driver name
@@ -10,14 +12,21 @@ return [
      * Driver's config
      */
     'drivers' => [
+        // Driver without config
+        'base64' => [],
+
+        // Driver with specific driver
         'main' => [
-            'driver' => 'base64',
-            'options' => [],
+            'driver' => 'optimus',
+            'prime' => 2019110711,
+            'inverse' => 1464972935,
+            'random' => 1388954641,
         ],
 
+        // Driver with specific driver by class name
         'other' => [
-            'driver' => 'hashids',
-            'options' => [],
+            'driver' => PrefixDriver::class,
+            'prefix' => 'fake',
         ],
     ],
 ];

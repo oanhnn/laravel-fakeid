@@ -2,17 +2,17 @@
 
 namespace Tests\Unit;
 
-use Laravel\FakeId\Drivers\OptimusDriver;
+use Laravel\FakeId\Drivers\PrefixDriver;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class OptimusDriverTest
+ * Class PrefixDriverTest
  *
  * @package     Tests\Unit
  * @author      Oanh Nguyen <oanhnn.bk@gmail.com>
  * @license     The MIT license
  */
-class OptimusDriverTest extends TestCase
+class PrefixDriverTest extends TestCase
 {
     /**
      * Test it should return same value with input after encode and decode
@@ -21,13 +21,10 @@ class OptimusDriverTest extends TestCase
      */
     public function testItShouldReturnSameValueAfterEncodeAndDecode()
     {
-        $driver = new OptimusDriver([
-            'prime' => 2019110711,
-            'inverse' => 1464972935,
-            'random' => 1388954641,
+        $driver = new PrefixDriver([
+            'prefix' => 'fake',
         ]);
-
-        $input = 123456;
+        $input = '123456';
         $encoded = $driver->encode($input);
         $decoded = $driver->decode($encoded);
 

@@ -4,12 +4,14 @@ namespace Laravel\FakeId;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Manager as IlluminateManager;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Laravel\FakeId\Contracts\Driver;
 use Laravel\FakeId\Contracts\Manager as ManagerContract;
 use Laravel\FakeId\Drivers\Base64Driver;
 use Laravel\FakeId\Drivers\HashidsDriver;
+use Laravel\FakeId\Drivers\HexDriver;
 use Laravel\FakeId\Drivers\OptimusDriver;
+use Laravel\FakeId\Drivers\PrefixDriver;
 
 /**
  * Class Manager
@@ -27,64 +29,43 @@ class Manager extends IlluminateManager implements ManagerContract
      */
     public function getDefaultDriver()
     {
-        return $this->app->get('config')->get('fakeid.default', 'base64');
+        return $this->config->get('fakeid.default', 'base64');
     }
 
     /**
      * Create a new driver instance.
      *
-     * @param  string $driver
-     * @return mixed
+     * @param  string $name
+     * @return \Laravel\FakeId\Contracts\Driver
      * @throws \InvalidArgumentException
      */
-    protected function createDriver($driver)
+    protected function createDriver($name)
     {
         // First, we will determine if a custom driver creator exists for the given driver and
         // if it does not we will check for a creator method for the driver. Custom creator
         // callbacks allow developers to build their own "drivers" easily using Closures.
-        if (isset($this->customCreators[$driver])) {
-            return $this->callCustomCreator($driver);
+        if (isset($this->customCreators[$name])) {
+            return $this->callCustomCreator($name);
         }
 
-        $config = $this->app->get('config')->get("fakeid.drivers.{$driver}", []);
-        if (isset($config['driver'])) {
-            $method = 'create' . Str::studly($config['driver']) . 'Driver';
+        $config = (array) $this->config->get("fakeid.drivers.{$name}", []);
+        $driver = (string) Arr::pull($config, 'driver', $name);
+        $alias = [
+            'base64' => Base64Driver::class,
+            'hashids' => HashidsDriver::class,
+            'hex' => HexDriver::class,
+            'optimus' => OptimusDriver::class,
+            'prefix' => PrefixDriver::class,
+        ];
 
-            if (method_exists($this, $method)) {
-                return $this->$method($driver, Arr::get($config, 'options', []));
-            }
+        if (isset($alias[$driver])) {
+            $driver = $alias[$driver];
+        }
+
+        if (class_exists($driver) && is_subclass_of($driver, Driver::class)) {
+            return $this->app->make($driver, compact('config'));
         }
 
         throw new InvalidArgumentException("Driver [$driver] not supported.");
-    }
-
-    /**
-     * @param  string $name
-     * @param  array $config
-     * @return Base64Driver
-     */
-    protected function createBase64Driver(string $name, array $config = [])
-    {
-        return new Base64Driver();
-    }
-
-    /**
-     * @param  string $name
-     * @param  array $config
-     * @return HashidsDriver
-     */
-    protected function createHashidsDriver(string $name, array $config = [])
-    {
-        return new HashidsDriver($config);
-    }
-
-    /**
-     * @param  string $name
-     * @param  array $config
-     * @return OptimusDriver
-     */
-    protected function createOptimusDriver(string $name, array $config = [])
-    {
-        return new OptimusDriver($config);
     }
 }

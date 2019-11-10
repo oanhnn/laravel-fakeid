@@ -27,7 +27,7 @@ class ServiceProviderTest extends TestCase
      *
      * @return void
      */
-    public function testItWillPublishVendorConfig()
+    public function testItShouldPublishVendorConfig()
     {
         $sourceFile = dirname(dirname(__DIR__)) . '/config/fakeid.php';
         $targetFile = base_path('config/fakeid.php');
