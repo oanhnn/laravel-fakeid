@@ -2,6 +2,7 @@
 
 namespace Laravel\FakeId;
 
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Manager as IlluminateManager;
 use InvalidArgumentException;
@@ -22,6 +23,34 @@ use Laravel\FakeId\Drivers\PrefixDriver;
  */
 class Manager extends IlluminateManager implements ManagerContract
 {
+    /**
+     * The container instance.
+     *
+     * @var \Illuminate\Contracts\Container\Container
+     */
+    protected $container;
+
+    /**
+     * The configuration repository instance.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    protected $config;
+
+    /**
+     * Create a new manager instance.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+        $this->config = $container->make('config');
+        // Support Laravel 5
+        $this->app = $container;
+    }
+
     /**
      * Get the default connection name.
      *
@@ -63,7 +92,7 @@ class Manager extends IlluminateManager implements ManagerContract
         }
 
         if (class_exists($driver) && is_subclass_of($driver, Driver::class)) {
-            return $this->app->make($driver, compact('config'));
+            return $this->container->make($driver, compact('config'));
         }
 
         throw new InvalidArgumentException("Driver [$driver] not supported.");
