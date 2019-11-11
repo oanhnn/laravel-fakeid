@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use InvalidArgumentException;
 use Laravel\FakeId\Drivers\OptimusDriver;
 use PHPUnit\Framework\TestCase;
 
@@ -33,5 +34,18 @@ class OptimusDriverTest extends TestCase
 
         $this->assertNotSame($input, $encoded);
         $this->assertSame($input, $decoded);
+    }
+
+    /**
+     * Test it should throw exception when it was created with invalid config options
+     *
+     * @return void
+     */
+    public function testItShouldThrowExceptionWhenInvalidConfigOptions()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The prime and inverse must be specified.');
+
+        new OptimusDriver([]);
     }
 }

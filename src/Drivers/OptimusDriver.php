@@ -33,7 +33,7 @@ class OptimusDriver implements Driver
     public function __construct(array $config)
     {
         if (!isset($config['prime'], $config['inverse'])) {
-            throw new InvalidArgumentException('prime and inverse must be specified.');
+            throw new InvalidArgumentException('The prime and inverse must be specified.');
         }
 
         $this->optimus = new Optimus(

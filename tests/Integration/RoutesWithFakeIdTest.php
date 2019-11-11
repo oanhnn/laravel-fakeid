@@ -40,8 +40,9 @@ class RoutesWithFakeIdTest extends TestCase
         $this->assertNotSame('/posts/' . $post->getKey(), $uri);
 
         $response = $this->getJson($uri);
-        $response->assertOk();
+        $response->assertStatus(200);
         $response->assertJson([
+            'id' => $post->id,
             'title' => 'Post test',
         ]);
     }

@@ -24,6 +24,20 @@ Begin by pulling in the package through Composer.
 $ composer require oanhnn/laravel-fakeid
 ```
 
+Publish config file with
+
+```bash
+$ php artisan vendor:publish --provider="Laravel\\FakeId\\ServiceProvider"
+```
+
+or 
+
+```bash
+php artisan vendor:publish --tag=laravel-fakeid-config
+```
+
+Edit `config/fakeid.php` for config specific drivers.
+
 ## Usage
 
 ### Getting start
