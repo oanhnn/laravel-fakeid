@@ -66,4 +66,4 @@ First release
 
 [Unreleased]: https://github.com/oanhnn/laravel-fakeid/compare/v1.0.0...develop
 [1.0.0]:      https://github.com/oanhnn/laravel-fakeid/compare/v0.1.0...v1.0.0
-[1.0.0]:      https://github.com/oanhnn/laravel-fakeid/compare/v1.0.0...v2.0.0
+[2.0.0]:      https://github.com/oanhnn/laravel-fakeid/compare/v1.0.0...v2.0.0
