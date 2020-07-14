@@ -27,6 +27,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [2.0.0] - 2020-07-14
+
+### Added
+- Support Laravel 7.0+
+- Chain driver
+
+### Changed
+- Bump php to require 7.2+ and Larave to require 7.0+
+- Using Github Workflow instead of TravisCI
+
+### Removed
+- Support Laravel 5.x and 6.x
+
+
+
+
 ## [1.0.0] - 2019-11-11
 
 ### Added
@@ -50,3 +66,4 @@ First release
 
 [Unreleased]: https://github.com/oanhnn/laravel-fakeid/compare/v1.0.0...develop
 [1.0.0]:      https://github.com/oanhnn/laravel-fakeid/compare/v0.1.0...v1.0.0
+[1.0.0]:      https://github.com/oanhnn/laravel-fakeid/compare/v1.0.0...v2.0.0

@@ -47,7 +47,7 @@ class ServiceProvider extends IlluminateServiceProvider
         // publish vendor resources
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                dirname(__DIR__) . '/config/fakeid.php' => config_path('fakeid.php')
+                \dirname(__DIR__) . '/config/fakeid.php' => \config_path('fakeid.php')
             ], 'laravel-fakeid-config');
         }
     }

@@ -21,7 +21,7 @@ class HexDriver implements Driver
      */
     public function encode($data)
     {
-        return bin2hex($data);
+        return \bin2hex($data);
     }
 
     /**
@@ -32,6 +32,6 @@ class HexDriver implements Driver
      */
     public function decode($data)
     {
-        return hex2bin($data);
+        return \hex2bin($data);
     }
 }

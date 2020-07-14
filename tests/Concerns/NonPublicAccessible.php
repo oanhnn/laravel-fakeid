@@ -28,7 +28,7 @@ trait NonPublicAccessible
      */
     protected function getNonPublicProperty($obj, string $property)
     {
-        if (!is_object($obj)) {
+        if (!\is_object($obj)) {
             throw new InvalidArgumentException('The first argument must be an object.');
         }
         $ref = new ReflectionProperty(get_class($obj), $property);
@@ -49,7 +49,7 @@ trait NonPublicAccessible
      */
     protected function setNonPublicProperty($obj, string $property, $value)
     {
-        if (!is_object($obj)) {
+        if (!\is_object($obj)) {
             throw new InvalidArgumentException('The first argument must be an object.');
         }
 
@@ -70,7 +70,7 @@ trait NonPublicAccessible
      */
     protected function invokeNonPublicMethod($obj, string $method, ...$params)
     {
-        if (!is_object($obj)) {
+        if (!\is_object($obj)) {
             throw new InvalidArgumentException('The first argument must be an object.');
         }
 

@@ -4,6 +4,7 @@ composer.lock
 phpunit.xml
 phpcs.xml
 vendor
+build
 storage
 *.log
 .phpunit.result.cache

@@ -1,20 +1,20 @@
 # Laravel FakeID
 
-[![Latest Version](https://img.shields.io/packagist/v/oanhnn/laravel-fakeid.svg)](https://packagist.org/packages/oanhnn/laravel-fakeid)
-[![Software License](https://img.shields.io/github/license/oanhnn/laravel-fakeid.svg)](LICENSE)
-[![Build Status](https://img.shields.io/travis/oanhnn/laravel-fakeid/master.svg)](https://travis-ci.org/oanhnn/laravel-fakeid)
-[![Coverage Status](https://img.shields.io/coveralls/github/oanhnn/laravel-fakeid/master.svg)](https://coveralls.io/github/oanhnn/laravel-fakeid?branch=master)
+[![Build Status](https://github.com/oanhnn/laravel-fakeid/workflows/CI/badge.svg)](https://github.com/oanhnn/laravel-fakeid/actions)
+[![Coverage Status](https://img.shields.io/coveralls/github/oanhnn/laravel-fakeid/master.svg)](https://coveralls.io/github/oanhnn/laravel-fakeid)
+[![Latest Version](https://img.shields.io/packagist/v/oanhnn/laravel-fakeid.svg?label=latest%20version)](https://packagist.org/packages/oanhnn/laravel-fakeid)
 [![Total Downloads](https://img.shields.io/packagist/dt/oanhnn/laravel-fakeid.svg)](https://packagist.org/packages/oanhnn/laravel-fakeid)
-[![Requires PHP](https://img.shields.io/travis/php-v/oanhnn/laravel-fakeid.svg)](https://travis-ci.org/oanhnn/laravel-fakeid)
+[![Requires PHP](https://img.shields.io/packagist/php-v/oanhnn/laravel-fakeid.svg)](https://packagist.org/packages/oanhnn/laravel-fakeid)
+[![Software License](https://img.shields.io/github/license/oanhnn/laravel-fakeid.svg)](LICENSE)
 
-Easy fake model ID on URL Laravel 5.5+ Application.
+Easy fake model ID on URL Laravel Application.
 
 ## Requirements
 
-* php >=7.1.3
-* Laravel 5.5+
+* php >=7.2
+* Laravel 7.0+
 
-> Laravel 6.0+ requires php 7.2+
+> Laravel 5.5+ using version 1.x (require php 7.1.3+)
 
 ## Installation
 
@@ -101,6 +101,8 @@ class MyModel extends Model implements ShouldFakeId
 > | hashids   | int[]      | string       | int[]        |
 > | hex       | string     | string       | string       |
 > | optimus   | int        | int          | int          |
+> | prefix    | string     | string       | string       |
+> | chain     | string     | string       | string       |
 
 ### Custom driver
 

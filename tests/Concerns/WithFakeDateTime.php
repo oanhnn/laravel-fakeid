@@ -24,17 +24,17 @@ trait WithFakeDateTime
     protected function setUpFakeDateTime()
     {
         $date = null;
-        if (method_exists($this, 'fakeDateTime')) {
+        if (\method_exists($this, 'fakeDateTime')) {
             $date = $this->fakeDateTime();
-        } elseif (property_exists($this, 'fakeDateTime')) {
+        } elseif (\property_exists($this, 'fakeDateTime')) {
             $date = $this->fakeDateTime;
         }
 
-        if (is_int($date)) {
+        if (\is_int($date)) {
             $date = Carbon::createFromTimestamp($date);
         }
 
-        if (is_string($date)) {
+        if (\is_string($date)) {
             $date = Carbon::parse($date);
         }
 

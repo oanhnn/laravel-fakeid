@@ -21,7 +21,7 @@ class Base64Driver implements Driver
      */
     public function encode($data)
     {
-        return strtr(base64_encode($data), ['+' => '-', '/' => '_', '=' => '']);
+        return \strtr(\base64_encode($data), ['+' => '-', '/' => '_', '=' => '']);
     }
 
     /**
@@ -32,6 +32,6 @@ class Base64Driver implements Driver
      */
     public function decode($data)
     {
-        return base64_decode(strtr($data, ['-' => '+', '_' => '/']), false);
+        return \base64_decode(\strtr($data, ['-' => '+', '_' => '/']), false);
     }
 }

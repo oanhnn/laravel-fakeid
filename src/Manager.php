@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use Laravel\FakeId\Contracts\Driver;
 use Laravel\FakeId\Contracts\Manager as ManagerContract;
 use Laravel\FakeId\Drivers\Base64Driver;
+use Laravel\FakeId\Drivers\ChainDriver;
 use Laravel\FakeId\Drivers\HashidsDriver;
 use Laravel\FakeId\Drivers\HexDriver;
 use Laravel\FakeId\Drivers\OptimusDriver;
@@ -47,8 +48,6 @@ class Manager extends IlluminateManager implements ManagerContract
     {
         $this->container = $container;
         $this->config = $container->make('config');
-        // Support Laravel 5
-        $this->app = $container;
     }
 
     /**
@@ -79,6 +78,11 @@ class Manager extends IlluminateManager implements ManagerContract
 
         $config = (array) $this->config->get("fakeid.drivers.{$name}", []);
         $driver = (string) Arr::pull($config, 'driver', $name);
+
+        if ($driver === 'chain') {
+            return $this->createChainDriver($config['drivers'] ?? []);
+        }
+
         $alias = [
             'base64' => Base64Driver::class,
             'hashids' => HashidsDriver::class,
@@ -91,10 +95,27 @@ class Manager extends IlluminateManager implements ManagerContract
             $driver = $alias[$driver];
         }
 
-        if (class_exists($driver) && is_subclass_of($driver, Driver::class)) {
+        if (\class_exists($driver) && \is_subclass_of($driver, Driver::class)) {
             return $this->container->make($driver, compact('config'));
         }
 
         throw new InvalidArgumentException("Driver [$driver] not supported.");
+    }
+
+    /**
+     * Create a mix driver instance.
+     *
+     * @param  string[] $drivers
+     * @return \Laravel\FakeId\Contracts\Driver
+     * @throws \InvalidArgumentException
+     */
+    protected function createChainDriver($drivers)
+    {
+        return new ChainDriver(\array_map(
+            function ($name) {
+                return $this->createDriver($name);
+            },
+            $drivers
+        ));
     }
 }

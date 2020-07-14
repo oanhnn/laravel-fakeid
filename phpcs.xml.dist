@@ -32,13 +32,7 @@
         </properties>
     </rule>
 
-    <rule ref="PSR1.Classes.ClassDeclaration">
-        <exclude-pattern>tests/bootstrap.php</exclude-pattern>
-    </rule>
-
     <!-- Paths to check -->
     <file>src</file>
     <file>tests</file>
-
-    <!-- <exclude-pattern>tests/bootstrap.php</exclude-pattern> -->
 </ruleset>

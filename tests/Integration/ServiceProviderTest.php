@@ -29,10 +29,10 @@ class ServiceProviderTest extends TestCase
      */
     public function testItShouldPublishVendorConfig()
     {
-        $sourceFile = dirname(dirname(__DIR__)) . '/config/fakeid.php';
-        $targetFile = base_path('config/fakeid.php');
+        $sourceFile = \dirname(\dirname(__DIR__)) . '/config/fakeid.php';
+        $targetFile = \base_path('config/fakeid.php');
 
-        $this->assertFileNotExists($targetFile);
+        $this->assertFileDoesNotExist($targetFile);
 
         $this->artisan('vendor:publish', [
             '--provider' => 'Laravel\\FakeId\\ServiceProvider',
@@ -40,7 +40,7 @@ class ServiceProviderTest extends TestCase
         ]);
 
         $this->assertFileExists($targetFile);
-        $this->assertEquals(file_get_contents($sourceFile), file_get_contents($targetFile));
+        $this->assertEquals(\file_get_contents($sourceFile), \file_get_contents($targetFile));
     }
 
     /**
@@ -50,14 +50,14 @@ class ServiceProviderTest extends TestCase
      */
     public function testItProvidesDefaultConfig()
     {
-        $config = config('fakeid');
+        $config = \config('fakeid');
 
-        $this->assertTrue(is_array($config));
+        $this->assertTrue(\is_array($config));
         $this->assertArrayHasKey('default', $config);
-        $this->assertTrue(is_string($config['default']));
+        $this->assertTrue(\is_string($config['default']));
 
         $this->assertArrayHasKey('drivers', $config);
-        $this->assertTrue(is_array($config['drivers']));
+        $this->assertTrue(\is_array($config['drivers']));
         $this->assertArrayHasKey($config['default'], $config['drivers']);
     }
 
@@ -72,7 +72,7 @@ class ServiceProviderTest extends TestCase
 
         foreach ($classes as $class) {
             $this->assertTrue($this->app->bound($class));
-            if (class_exists($class)) {
+            if (\class_exists($class)) {
                 $this->assertInstanceOf($class, $this->app->make($class));
             }
         }

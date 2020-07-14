@@ -58,12 +58,14 @@ trait RoutesWithFakeId
     /**
      * Retrieve the model for a bound value.
      *
-     * @param  mixed $value
+     * @param  mixed  $value
+     * @param  string|null  $field
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
-        if ($this instanceof ShouldFakeId) {
+        $routingField = $field ?? $this->getRouteKeyName();
+        if ($this instanceof ShouldFakeId && $routingField === $this->getRouteKeyName()) {
             try {
                 $value = $this->getFakeIdDriver()->decode($value);
             } catch (Exception $e) {
@@ -71,6 +73,6 @@ trait RoutesWithFakeId
             }
         }
 
-        return $this->where($this->getRouteKeyName(), $value)->first();
+        return $this->where($routingField, $value)->first();
     }
 }

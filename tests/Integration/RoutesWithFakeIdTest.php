@@ -35,7 +35,7 @@ class RoutesWithFakeIdTest extends TestCase
     public function testItShouldMatchCorrect()
     {
         $post = Post::create(['title' => 'Post test']);
-        $uri = route('posts.show', compact('post'), false);
+        $uri = \route('posts.show', \compact('post'), false);
 
         $this->assertNotSame('/posts/' . $post->getKey(), $uri);
 

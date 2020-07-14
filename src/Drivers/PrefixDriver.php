@@ -49,6 +49,6 @@ class PrefixDriver implements Driver
      */
     public function decode($data)
     {
-        return substr($data, strlen($this->prefix));
+        return \substr($data, \strlen($this->prefix));
     }
 }
