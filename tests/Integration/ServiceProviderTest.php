@@ -32,7 +32,7 @@ class ServiceProviderTest extends TestCase
         $sourceFile = \dirname(\dirname(__DIR__)) . '/config/fakeid.php';
         $targetFile = \base_path('config/fakeid.php');
 
-        $this->assertFileDoesNotExist($targetFile);
+        $this->assertFileNotExists($targetFile);
 
         $this->artisan('vendor:publish', [
             '--provider' => 'Laravel\\FakeId\\ServiceProvider',
